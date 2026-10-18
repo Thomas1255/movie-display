@@ -7,7 +7,7 @@ import { Routes, Route } from 'react-router';
 function App() {
   return (
     <div>
-      <NavBar/>
+      <NavBar />
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -15,7 +15,6 @@ function App() {
         </Routes>
       </main>
     </div>
-
   );
 }
 
