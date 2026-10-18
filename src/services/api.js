@@ -9,7 +9,6 @@ export const getPopularMovies = async () => {
             'Authorization': `Bearer ${ACCESS_TOKEN}`
         }
     });
-
     const data = await response.json();
     return data.results;
 };
@@ -23,10 +22,6 @@ export const searchMovies = async (query) => {
             'Authorization': `Bearer ${ACCESS_TOKEN}`
         }
     });
-
     const data = await response.json();
     return data.results;
 };
-
-
-
