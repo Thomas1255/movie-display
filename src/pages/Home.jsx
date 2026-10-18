@@ -27,8 +27,18 @@ function Home() {
 
     const handleSearch = (e) => {
         e.preventDefault(); // prevent page refresh so the search field doesn't clear on submit
-        alert(searchQuery);
+        if (loading) return;
+        //debug
+        console.log(`${searchQuery}`);
     };
+
+    const handleInputChange = (value) => {
+        // prevent user from beginning their search with whitespace
+        if (value.startsWith(' ')){
+            return;
+        }
+        setSearchQuery(value);
+    }
 
     return (
         <div className="home">
@@ -38,7 +48,7 @@ function Home() {
                     placeholder="Search..."
                     className="search-input"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => handleInputChange(e.target.value)}
                 />
             </form>
 
