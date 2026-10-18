@@ -23,7 +23,7 @@ function Home() {
             }
         }
         loadPopularMovies();
-    }, []);
+    }, []); //runs once because no specified array
 
     const handleSearch = async (e) => {
         e.preventDefault(); // prevent page refresh so the search field doesn't clear on submit
