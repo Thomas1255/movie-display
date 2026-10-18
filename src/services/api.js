@@ -17,7 +17,7 @@ export const searchMovies = async (query) => {
     // ? is start of params, & to add more params
     const response = await fetch(`${BASE_URL}/search/movie?query=${encodeURIComponent(query)}`, {
         method: 'GET',
-        header: {
+        headers: {
             'accept': 'application/json',
             'Authorization': `Bearer ${ACCESS_TOKEN}`
         }

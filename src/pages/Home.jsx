@@ -25,16 +25,30 @@ function Home() {
         loadPopularMovies();
     }, []);
 
-    const handleSearch = (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault(); // prevent page refresh so the search field doesn't clear on submit
         if (loading) return;
+
+        setLoading(true);
+        try {
+            const searchResults = await searchMovies(searchQuery);
+            setMovies(searchResults);
+            setError(null); // reset error flag
+        }
+        catch (err) {
+            console.log(err);
+            setError("Search failed...");
+        }
+        finally {
+            setLoading(false);
+        }
         //debug
         console.log(`${searchQuery}`);
     };
 
     const handleInputChange = (value) => {
         // prevent user from beginning their search with whitespace
-        if (value.startsWith(' ')){
+        if (value.startsWith(' ')) {
             return;
         }
         setSearchQuery(value);
@@ -58,7 +72,7 @@ function Home() {
                 <div className="loading">Loading...</div>
             ) : (
                 <div className="movies-grid">
-                    {movies.map((movie) => <MovieCard movie={movie} key={movie.id}/>)}
+                    {movies?.map((movie) => <MovieCard movie={movie} key={movie.id} />)}
                 </div>
             )
             };
